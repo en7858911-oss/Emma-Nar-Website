@@ -1,6 +1,4 @@
-/* =================================
-   BASIC RESET
-================================= */
+/* ================= GENERAL ================= */
 
 * {
     margin: 0;
@@ -8,573 +6,529 @@
     box-sizing: border-box;
 }
 
-
 body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #080808;
+    color: white;
+}
 
-    font-family: Arial, sans-serif;
+
+/* ================= INTRO ================= */
+
+.intro {
+    position: fixed;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.75),
+            rgba(0, 0, 0, 0.95)
+        );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    z-index: 1000;
+
+    transition: opacity 0.7s ease;
+}
+
+.intro-content {
+    animation: introAppear 1.2s ease;
+}
+
+.intro-image {
+    width: 180px;
+    height: 180px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 3px solid #ffffff;
+
+    box-shadow: 0 0 35px rgba(255, 255, 255, 0.3);
+
+    margin-bottom: 20px;
+}
+
+.intro h1 {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.intro p {
+    color: #cccccc;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+
+/* WATCH BUTTON */
+
+#watchNowBtn {
+    background: white;
+    color: black;
+
+    border: none;
+
+    padding: 15px 35px;
+
+    font-size: 18px;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+#watchNowBtn:hover {
+    transform: scale(1.08);
+    background: #dddddd;
+}
+
+
+/* ================= LOADING SCREEN ================= */
+
+.loading-screen {
+    position: fixed;
+
+    inset: 0;
+
+    background: #050505;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    z-index: 900;
+}
+
+.loading-content h2 {
+    margin-top: 20px;
+    font-weight: normal;
+}
+
+
+/* VIDEO ICON */
+
+.video-loader {
+    width: 80px;
+    height: 80px;
+
+    border: 3px solid #555;
+
+    border-top-color: white;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+
+    animation: spin 1s linear infinite;
+
+    margin: auto;
+}
+
+
+/* LOADING BAR */
+
+.loading-bar {
+    width: 250px;
+    height: 5px;
+
+    background: #333;
+
+    margin: 25px auto;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+}
+
+.loading-progress {
+    width: 0%;
+    height: 100%;
+
+    background: white;
+
+    animation: loading 2.5s linear forwards;
+}
+
+
+/* ================= MAIN WEBSITE ================= */
+
+.main-website {
+    display: none;
+    min-height: 100vh;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 6%;
+
+    background: rgba(0, 0, 0, 0.95);
+
+    border-bottom: 1px solid #222;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.logo span {
+    font-weight: normal;
+}
+
+.nav-stats {
+    display: flex;
+    gap: 25px;
+
+    color: #bbb;
+
+    font-size: 14px;
+}
+
+.nav-stats span {
+    color: white;
+    font-weight: bold;
+}
+
+
+/* ================= WELCOME ================= */
+
+.welcome {
+    text-align: center;
+
+    padding: 80px 20px 50px;
+}
+
+.welcome h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.welcome p {
+    color: #aaa;
+    font-size: 18px;
+}
+
+
+/* ================= OWNER SECTION ================= */
+
+.owner-section {
+    width: 90%;
+    max-width: 900px;
+
+    margin: 30px auto 70px;
+
+    padding: 30px;
+
+    background: #111;
+
+    border: 1px solid #252525;
+
+    border-radius: 15px;
+}
+
+.owner-section h2 {
+    margin-bottom: 10px;
+}
+
+.owner-section > p {
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+.upload-box {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+.upload-box input[type="file"] {
+    color: white;
+    width: 100%;
+}
+
+.upload-box input[type="text"] {
+    flex: 1;
+
+    min-width: 200px;
+
+    padding: 13px;
 
     background: #080808;
 
     color: white;
 
+    border: 1px solid #333;
+
+    border-radius: 7px;
 }
 
-
-/* =================================
-   INTRO SCREEN
-================================= */
-
-.intro-screen {
-
-    min-height: 100vh;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    align-items: center;
-
-    text-align: center;
-
-    background:
-        radial-gradient(circle,
-            #292929 0%,
-            #0b0b0b 55%,
-            #000000 100%);
-
-}
-
-
-.intro-logo {
-
-    width: 190px;
-
-    height: 190px;
-
-    object-fit: contain;
-
-    margin-bottom: 25px;
-
-    animation:
-        introAnimation 2s ease;
-
-}
-
-
-.intro-screen h1 {
-
-    font-size: 48px;
-
-    margin-bottom: 10px;
-
-}
-
-
-.intro-screen p {
-
-    color: #aaaaaa;
-
-    margin-bottom: 30px;
-
-}
-
-
-/* WATCH NOW BUTTON */
-
-#watchNowBtn {
-
-    padding: 15px 35px;
-
-    border: none;
-
-    border-radius: 30px;
+.upload-box button {
+    padding: 13px 25px;
 
     background: white;
 
     color: black;
 
-    font-size: 17px;
+    border: none;
 
-    font-weight: bold;
+    border-radius: 7px;
 
     cursor: pointer;
 
-    transition: 0.3s;
-
-}
-
-
-#watchNowBtn:hover {
-
-    transform: scale(1.08);
-
-}
-
-
-/* =================================
-   LOADING SCREEN
-================================= */
-
-.loading-screen {
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 999;
-
-    background: #050505;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    align-items: center;
-
-}
-
-
-.video-icon {
-
-    width: 80px;
-
-    height: 80px;
-
-    border: 2px solid white;
-
-    border-radius: 50%;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-size: 28px;
-
-    margin-bottom: 20px;
-
-    animation:
-        pulse 1s infinite;
-
-}
-
-
-.loader {
-
-    width: 200px;
-
-    height: 4px;
-
-    background: #333;
-
-    border-radius: 10px;
-
-    margin-top: 20px;
-
-    overflow: hidden;
-
-}
-
-
-.loader::after {
-
-    content: "";
-
-    display: block;
-
-    width: 70px;
-
-    height: 100%;
-
-    background: white;
-
-    animation:
-        loading 1.2s infinite;
-
-}
-
-
-/* =================================
-   NAVBAR
-================================= */
-
-.navbar {
-
-    min-height: 70px;
-
-    padding: 12px 5%;
-
-    background: #111;
-
-    border-bottom: 1px solid #292929;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-}
-
-
-.brand {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    font-size: 21px;
-
     font-weight: bold;
+}
 
+.upload-box button:hover {
+    background: #ddd;
+}
+
+#uploadMessage {
+    margin-top: 15px;
+    color: #aaa;
 }
 
 
-.brand img {
-
-    width: 45px;
-
-    height: 45px;
-
-    object-fit: contain;
-
-    border-radius: 50%;
-
-}
-
-
-.owner-statistics {
-
-    display: flex;
-
-    gap: 30px;
-
-}
-
-
-.owner-statistics div {
-
-    text-align: center;
-
-}
-
-
-.owner-statistics strong {
-
-    display: block;
-
-    font-size: 20px;
-
-}
-
-
-.owner-statistics small {
-
-    color: #888;
-
-}
-
-
-/* =================================
-   WELCOME
-================================= */
-
-.welcome {
-
-    text-align: center;
-
-    padding: 50px 20px 30px;
-
-}
-
-
-.welcome h1 {
-
-    font-size: 40px;
-
-    margin-bottom: 10px;
-
-}
-
-
-.welcome p {
-
-    color: #999;
-
-}
-
-
-/* =================================
-   VIDEO SECTION
-================================= */
+/* ================= VIDEOS ================= */
 
 .videos-section {
-
+    width: 90%;
     max-width: 1200px;
 
     margin: auto;
 
-    padding: 20px;
+    padding-bottom: 80px;
+}
 
+.videos-section h2 {
+    font-size: 30px;
+    margin-bottom: 30px;
 }
 
 
-.videos-section>h2 {
+/* VIDEO GRID */
 
-    margin-bottom: 20px;
-
-}
-
-
-.video-grid {
-
+.video-gallery {
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fit,
-            minmax(280px, 1fr));
+        repeat(auto-fit, minmax(280px, 1fr));
 
-    gap: 25px;
-
+    gap: 30px;
 }
 
 
-/* =================================
-   VIDEO CARD
-================================= */
+/* VIDEO CARD */
 
 .video-card {
+    background: #111;
 
-    background: #151515;
+    border: 1px solid #242424;
 
     border-radius: 15px;
 
     overflow: hidden;
 
-    border: 1px solid #282828;
+    transition: 0.3s;
+}
 
+.video-card:hover {
+    transform: translateY(-5px);
+
+    border-color: #555;
 }
 
 
-.video-card video {
+/* VIDEO */
 
+.video-card video {
     width: 100%;
 
     display: block;
 
     background: black;
-
 }
 
+
+/* VIDEO INFO */
 
 .video-info {
-
-    padding: 15px;
-
+    padding: 18px;
 }
-
 
 .video-info h3 {
-
-    margin-bottom: 15px;
-
+    margin-bottom: 12px;
 }
 
+
+/* VIDEO STATS */
 
 .video-stats {
-
-    display: flex;
-
-    justify-content: space-between;
-
     color: #999;
 
-    margin-bottom: 15px;
+    font-size: 14px;
 
+    margin-bottom: 15px;
 }
 
 
-.video-actions {
+/* BUTTONS */
 
+.video-buttons {
     display: flex;
 
-    gap: 7px;
+    flex-wrap: wrap;
 
+    gap: 8px;
 }
 
-
-.video-actions button {
-
+.video-buttons button {
     flex: 1;
 
-    padding: 10px 5px;
+    min-width: 80px;
 
-    border: none;
+    padding: 10px;
 
-    border-radius: 8px;
-
-    background: #292929;
+    background: #1c1c1c;
 
     color: white;
 
+    border: 1px solid #333;
+
+    border-radius: 7px;
+
     cursor: pointer;
+}
 
-    transition: 0.2s;
-
+.video-buttons button:hover {
+    background: #292929;
 }
 
 
-.video-actions button:hover {
+/* ================= FOOTER ================= */
 
-    background: #3b3b3b;
+footer {
+    text-align: center;
 
+    padding: 50px 20px;
+
+    border-top: 1px solid #222;
+
+    color: #777;
+}
+
+footer h2 {
+    color: white;
+    margin-bottom: 10px;
+}
+
+footer p {
+    margin: 8px;
 }
 
 
-/* =================================
-   HIDDEN
-================================= */
+/* ================= ANIMATIONS ================= */
 
-.hidden {
-
-    display: none !important;
-
-}
-
-
-/* =================================
-   ANIMATIONS
-================================= */
-
-@keyframes introAnimation {
+@keyframes introAppear {
 
     from {
-
         opacity: 0;
-
-        transform:
-            scale(0.5);
-
+        transform: scale(0.8);
     }
 
     to {
-
         opacity: 1;
-
-        transform:
-            scale(1);
-
+        transform: scale(1);
     }
 
 }
 
+@keyframes spin {
 
-@keyframes pulse {
-
-    0% {
-
-        transform:
-            scale(1);
-
-    }
-
-    50% {
-
-        transform:
-            scale(1.15);
-
-    }
-
-    100% {
-
-        transform:
-            scale(1);
-
+    to {
+        transform: rotate(360deg);
     }
 
 }
-
 
 @keyframes loading {
 
     from {
-
-        transform:
-            translateX(-100px);
-
+        width: 0%;
     }
 
     to {
-
-        transform:
-            translateX(220px);
-
+        width: 100%;
     }
 
 }
 
 
-/* =================================
-   MOBILE
-================================= */
+/* ================= MOBILE ================= */
 
 @media (max-width: 600px) {
 
-    .intro-screen h1 {
-
-        font-size: 36px;
-
+    .intro h1 {
+        font-size: 38px;
     }
 
-
-    .intro-logo {
-
-        width: 150px;
-
-        height: 150px;
-
+    .intro-image {
+        width: 140px;
+        height: 140px;
     }
-
 
     .navbar {
-
-        padding: 12px 20px;
-
+        padding: 15px;
     }
 
-
-    .owner-statistics {
-
-        gap: 15px;
-
+    .logo {
+        font-size: 22px;
     }
 
-
-    .owner-statistics strong {
-
-        font-size: 16px;
-
-    }
-
-
-    .owner-statistics small {
-
+    .nav-stats {
+        gap: 10px;
         font-size: 11px;
-
     }
 
+    .welcome {
+        padding-top: 60px;
+    }
 
-    .video-actions button {
+    .welcome h1 {
+        font-size: 30px;
+    }
 
-        font-size: 12px;
-
+    .owner-section {
+        padding: 20px;
     }
 
 }
