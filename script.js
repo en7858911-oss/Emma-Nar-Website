@@ -480,13 +480,12 @@ uploadBtn.addEventListener(
 
 
         if (
-            !file.type.startsWith(
-                "video/"
-            )
+            file.type !== "video/mp4" &&
+            !file.name.toLowerCase().endsWith(".mp4")
         ) {
 
             uploadMessage.textContent =
-                "Only video files are allowed.";
+                "Only MP4 video files are allowed.";
 
             return;
 
@@ -530,7 +529,7 @@ uploadBtn.addEventListener(
 
 
         uploadMessage.textContent =
-            "Video uploaded successfully!";
+            "Video preview added. To publish it online, add the MP4 to the videos folder in GitHub and add its path to the videos list.";
 
 
         videoUpload.value =
