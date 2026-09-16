@@ -31,6 +31,69 @@ let videos = [
 ];
 
 
+async function loadVideosFromGitHub() {
+
+    if (!window.location.hostname.endsWith("github.io")) return;
+
+
+    const pathParts =
+        window.location.pathname.split("/").filter(Boolean);
+
+
+    const owner =
+        window.location.hostname.replace(".github.io", "");
+
+
+    const repository =
+        pathParts[0];
+
+
+    if (!repository) return;
+
+
+    const response = await fetch(
+        `https://api.github.com/repos/${owner}/${repository}/contents/videos`
+    );
+
+
+    if (!response.ok) return;
+
+
+    const files = await response.json();
+
+
+    const githubVideos = files
+        .filter(
+            function (file) {
+
+                return file.type === "file" &&
+                    file.name.toLowerCase().endsWith(".mp4");
+
+            }
+        )
+        .map(
+            function (file, index) {
+
+                return {
+                    id: file.sha || index,
+                    title: file.name.replace(/\.mp4$/i, ""),
+                    src: file.download_url,
+                    watches: 0,
+                    downloads: 0,
+                    likes: 0
+                };
+
+            }
+        );
+
+
+    if (githubVideos.length) {
+        videos = githubVideos;
+    }
+
+}
+
+
 
 /* =========================================
    HTML ELEMENTS
@@ -107,7 +170,17 @@ watchNowBtn.addEventListener(
                 );
 
 
-                displayVideos();
+                loadVideosFromGitHub()
+                    .catch(
+                        function () {
+                            return undefined;
+                        }
+                    )
+                    .finally(
+                        function () {
+                            displayVideos();
+                        }
+                    );
 
             },
             1800
