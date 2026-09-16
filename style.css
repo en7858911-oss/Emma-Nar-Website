@@ -1,0 +1,657 @@
+```css
+/* =================================
+   BASIC RESET
+================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+
+    font-family: Arial, sans-serif;
+
+    background: #080808;
+
+    color: white;
+
+}
+
+
+/* =================================
+   INTRO SCREEN
+================================= */
+
+.intro-screen {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle,
+            #292929 0%,
+            #0b0b0b 55%,
+            #000000 100%
+        );
+
+}
+
+
+.intro-logo {
+
+    width: 190px;
+
+    height: 190px;
+
+    object-fit: contain;
+
+    margin-bottom: 25px;
+
+    animation:
+        introAnimation
+        2s
+        ease;
+
+}
+
+
+.intro-screen h1 {
+
+    font-size: 48px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.intro-screen p {
+
+    color: #aaaaaa;
+
+    margin-bottom: 30px;
+
+}
+
+
+/* WATCH NOW BUTTON */
+
+#watchNowBtn {
+
+    padding: 15px 35px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background: white;
+
+    color: black;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+
+#watchNowBtn:hover {
+
+    transform: scale(1.08);
+
+}
+
+
+/* =================================
+   LOADING SCREEN
+================================= */
+
+.loading-screen {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 999;
+
+    background: #050505;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+
+.video-icon {
+
+    width: 80px;
+
+    height: 80px;
+
+    border: 2px solid white;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 28px;
+
+    margin-bottom: 20px;
+
+    animation:
+        pulse
+        1s
+        infinite;
+
+}
+
+
+.loader {
+
+    width: 200px;
+
+    height: 4px;
+
+    background: #333;
+
+    border-radius: 10px;
+
+    margin-top: 20px;
+
+    overflow: hidden;
+
+}
+
+
+.loader::after {
+
+    content: "";
+
+    display: block;
+
+    width: 70px;
+
+    height: 100%;
+
+    background: white;
+
+    animation:
+        loading
+        1.2s
+        infinite;
+
+}
+
+
+/* =================================
+   NAVBAR
+================================= */
+
+.navbar {
+
+    min-height: 70px;
+
+    padding: 12px 5%;
+
+    background: #111;
+
+    border-bottom: 1px solid #292929;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+}
+
+
+.brand img {
+
+    width: 45px;
+
+    height: 45px;
+
+    object-fit: contain;
+
+    border-radius: 50%;
+
+}
+
+
+.owner-statistics {
+
+    display: flex;
+
+    gap: 30px;
+
+}
+
+
+.owner-statistics div {
+
+    text-align: center;
+
+}
+
+
+.owner-statistics strong {
+
+    display: block;
+
+    font-size: 20px;
+
+}
+
+
+.owner-statistics small {
+
+    color: #888;
+
+}
+
+
+/* =================================
+   WELCOME
+================================= */
+
+.welcome {
+
+    text-align: center;
+
+    padding: 50px 20px 30px;
+
+}
+
+
+.welcome h1 {
+
+    font-size: 40px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.welcome p {
+
+    color: #999;
+
+}
+
+
+/* =================================
+   OWNER PANEL
+================================= */
+
+.owner-panel {
+
+    max-width: 900px;
+
+    margin: 20px auto 40px;
+
+    padding: 25px;
+
+    background: #151515;
+
+    border: 1px solid #292929;
+
+    border-radius: 15px;
+
+}
+
+
+.owner-panel h2 {
+
+    margin-bottom: 10px;
+
+}
+
+
+.owner-panel p {
+
+    color: #999;
+
+    margin-bottom: 18px;
+
+}
+
+
+#videoUpload {
+
+    display: block;
+
+    margin-bottom: 15px;
+
+}
+
+
+#uploadBtn {
+
+    padding: 12px 25px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: white;
+
+    color: black;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+/* =================================
+   VIDEO SECTION
+================================= */
+
+.videos-section {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 20px;
+
+}
+
+
+.videos-section > h2 {
+
+    margin-bottom: 20px;
+
+}
+
+
+.video-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(280px, 1fr)
+        );
+
+    gap: 25px;
+
+}
+
+
+/* =================================
+   VIDEO CARD
+================================= */
+
+.video-card {
+
+    background: #151515;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    border: 1px solid #282828;
+
+}
+
+
+.video-card video {
+
+    width: 100%;
+
+    display: block;
+
+    background: black;
+
+}
+
+
+.video-info {
+
+    padding: 15px;
+
+}
+
+
+.video-info h3 {
+
+    margin-bottom: 15px;
+
+}
+
+
+.video-stats {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #999;
+
+    margin-bottom: 15px;
+
+}
+
+
+.video-actions {
+
+    display: flex;
+
+    gap: 7px;
+
+}
+
+
+.video-actions button {
+
+    flex: 1;
+
+    padding: 10px 5px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #292929;
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.video-actions button:hover {
+
+    background: #3b3b3b;
+
+}
+
+
+/* =================================
+   HIDDEN
+================================= */
+
+.hidden {
+
+    display: none !important;
+
+}
+
+
+/* =================================
+   ANIMATIONS
+================================= */
+
+@keyframes introAnimation {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.5);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+@keyframes pulse {
+
+    0% {
+
+        transform:
+            scale(1);
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.15);
+
+    }
+
+    100% {
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+@keyframes loading {
+
+    from {
+
+        transform:
+            translateX(-100px);
+
+    }
+
+    to {
+
+        transform:
+            translateX(220px);
+
+    }
+
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+
+    .intro-screen h1 {
+
+        font-size: 36px;
+
+    }
+
+
+    .intro-logo {
+
+        width: 150px;
+
+        height: 150px;
+
+    }
+
+
+    .navbar {
+
+        padding: 12px 20px;
+
+    }
+
+
+    .owner-statistics {
+
+        gap: 15px;
+
+    }
+
+
+    .owner-statistics strong {
+
+        font-size: 16px;
+
+    }
+
+
+    .owner-statistics small {
+
+        font-size: 11px;
+
+    }
+
+
+    .video-actions button {
+
+        font-size: 12px;
+
+    }
+
+}
+```
