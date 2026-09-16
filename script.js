@@ -19,7 +19,7 @@ let videos = [
 
         title: "My First Emma Nar Video",
 
-        src: "videos/sample-video.mp4",
+        src: "videos/video.mp4",
 
         watches: 0,
 
