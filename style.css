@@ -1,4 +1,3 @@
-```css
 /* =================================
    BASIC RESET
 ================================= */
@@ -40,12 +39,10 @@ body {
     text-align: center;
 
     background:
-        radial-gradient(
-            circle,
+        radial-gradient(circle,
             #292929 0%,
             #0b0b0b 55%,
-            #000000 100%
-        );
+            #000000 100%);
 
 }
 
@@ -61,9 +58,7 @@ body {
     margin-bottom: 25px;
 
     animation:
-        introAnimation
-        2s
-        ease;
+        introAnimation 2s ease;
 
 }
 
@@ -164,9 +159,7 @@ body {
     margin-bottom: 20px;
 
     animation:
-        pulse
-        1s
-        infinite;
+        pulse 1s infinite;
 
 }
 
@@ -201,9 +194,7 @@ body {
     background: white;
 
     animation:
-        loading
-        1.2s
-        infinite;
+        loading 1.2s infinite;
 
 }
 
@@ -321,71 +312,6 @@ body {
 
 
 /* =================================
-   OWNER PANEL
-================================= */
-
-.owner-panel {
-
-    max-width: 900px;
-
-    margin: 20px auto 40px;
-
-    padding: 25px;
-
-    background: #151515;
-
-    border: 1px solid #292929;
-
-    border-radius: 15px;
-
-}
-
-
-.owner-panel h2 {
-
-    margin-bottom: 10px;
-
-}
-
-
-.owner-panel p {
-
-    color: #999;
-
-    margin-bottom: 18px;
-
-}
-
-
-#videoUpload {
-
-    display: block;
-
-    margin-bottom: 15px;
-
-}
-
-
-#uploadBtn {
-
-    padding: 12px 25px;
-
-    border: none;
-
-    border-radius: 8px;
-
-    background: white;
-
-    color: black;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-}
-
-
-/* =================================
    VIDEO SECTION
 ================================= */
 
@@ -400,7 +326,7 @@ body {
 }
 
 
-.videos-section > h2 {
+.videos-section>h2 {
 
     margin-bottom: 20px;
 
@@ -412,10 +338,8 @@ body {
     display: grid;
 
     grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(280px, 1fr)
-        );
+        repeat(auto-fit,
+            minmax(280px, 1fr));
 
     gap: 25px;
 
@@ -654,4 +578,3 @@ body {
     }
 
 }
-```
