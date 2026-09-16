@@ -1,18 +1,236 @@
+```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>Emma Nar Website</title>
-  <style>
-    body { text-align:center; font-family: Arial; background: #000; color: #fff; }
-    video { width: 90%; max-width: 700px; margin-top: 20px; }
-  </style>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <!-- SEO -->
+    <title>Emma Nar - Official Videos</title>
+
+    <meta
+        name="description"
+        content="Official Emma Nar website. Watch, like, share and download videos from Emma Nar."
+    >
+
+    <meta
+        name="keywords"
+        content="Emma Nar, Emma Nar videos, Emma Nar music, Emma Nar official"
+    >
+
+    <meta name="author" content="Emma Nar">
+
+    <meta name="robots" content="index, follow">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
 </head>
+
+
 <body>
-  <h1>Emma Nar Website</h1>
-  
-  <video controls>
-    <source src="v14044g50000d9o3sl7og65o5d2ulcc0.MP4" type="video/mp4">
-  </video>
+
+
+    <!-- =========================
+         INTRO SCREEN
+    ========================== -->
+
+    <section id="introScreen" class="intro-screen">
+
+        <img
+            src="Pic1.png"
+            alt="Emma Nar"
+            class="intro-logo"
+        >
+
+        <h1>Emma Nar</h1>
+
+        <p>
+            Official Video Website
+        </p>
+
+        <button id="watchNowBtn">
+            ▶ Watch Now
+        </button>
+
+    </section>
+
+
+
+    <!-- =========================
+         LOADING SCREEN
+    ========================== -->
+
+    <section
+        id="loadingScreen"
+        class="loading-screen hidden"
+    >
+
+        <div class="video-icon">
+            ▶
+        </div>
+
+        <h2>
+            Preparing Videos...
+        </h2>
+
+        <div class="loader"></div>
+
+    </section>
+
+
+
+    <!-- =========================
+         MAIN WEBSITE
+    ========================== -->
+
+    <main
+        id="mainContent"
+        class="hidden"
+    >
+
+
+        <!-- NAVIGATION -->
+
+        <header class="navbar">
+
+            <div class="brand">
+
+                <img
+                    src="Pic1.png"
+                    alt="Emma Nar"
+                >
+
+                <span>
+                    Emma Nar
+                </span>
+
+            </div>
+
+
+            <div class="owner-statistics">
+
+                <div>
+
+                    <strong id="totalWatches">
+                        0
+                    </strong>
+
+                    <small>
+                        Watches
+                    </small>
+
+                </div>
+
+
+                <div>
+
+                    <strong id="totalDownloads">
+                        0
+                    </strong>
+
+                    <small>
+                        Downloads
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================
+             WELCOME
+        ========================== -->
+
+        <section class="welcome">
+
+            <h1>
+                Emma Nar
+            </h1>
+
+            <p>
+                Welcome to the official Emma Nar
+                video website.
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================
+             OWNER UPLOAD
+        ========================== -->
+
+        <section class="owner-panel">
+
+            <h2>
+                Upload New Video
+            </h2>
+
+            <p>
+                Owner video upload
+            </p>
+
+
+            <input
+                type="file"
+                id="videoUpload"
+                accept="video/*"
+            >
+
+
+            <button id="uploadBtn">
+                Upload Video
+            </button>
+
+
+            <p id="uploadMessage"></p>
+
+        </section>
+
+
+
+        <!-- =========================
+             VIDEO GALLERY
+        ========================== -->
+
+        <section class="videos-section">
+
+            <h2>
+                Latest Videos
+            </h2>
+
+
+            <div
+                id="videoContainer"
+                class="video-grid"
+            >
+
+                <!-- JavaScript adds videos here -->
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
 
 </body>
+
 </html>
+```
