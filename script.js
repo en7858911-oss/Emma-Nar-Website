@@ -12,7 +12,7 @@ let videos = [
 
         title: "The Money",
 
-        src: "videos/The-Money.mp4",
+        src: "videos/the-money.mp4",
 
         watches: 0,
 
