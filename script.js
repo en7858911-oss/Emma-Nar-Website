@@ -1,25 +1,18 @@
-/* =========================================
+/* =================================================
    EMMA NAR VIDEO WEBSITE
-========================================= */
+================================================= */
 
 
-/* =========================================
-   WEBSITE DATA
-========================================= */
-
-let totalWatches = 0;
-
-let totalDownloads = 0;
-
+/* ================= VIDEO DATABASE ================= */
 
 let videos = [
 
     {
         id: 1,
 
-        title: "My First Emma Nar Video",
+        title: "The Money",
 
-        src: "videos/video.mp4",
+        src: "videos/The-Money.mp4",
 
         watches: 0,
 
@@ -31,321 +24,303 @@ let videos = [
 ];
 
 
-async function loadVideosFromGitHub() {
+/* ================= TOTAL STATISTICS ================= */
 
-    if (!window.location.hostname.endsWith("github.io")) return;
+let totalWatches = 0;
 
-
-    const pathParts =
-        window.location.pathname.split("/").filter(Boolean);
+let totalDownloads = 0;
 
 
-    const owner =
-        window.location.hostname.replace(".github.io", "");
+/* ================= GET HTML ELEMENTS ================= */
 
-
-    const repository =
-        pathParts[0];
-
-
-    if (!repository) return;
-
-
-    const response = await fetch(
-        `https://api.github.com/repos/${owner}/${repository}/contents/videos`
-    );
-
-
-    if (!response.ok) return;
-
-
-    const files = await response.json();
-
-
-    const githubVideos = files
-        .filter(
-            function (file) {
-
-                return file.type === "file" &&
-                    file.name.toLowerCase().endsWith(".mp4");
-
-            }
-        )
-        .map(
-            function (file, index) {
-
-                return {
-                    id: file.sha || index,
-                    title: file.name.replace(/\.mp4$/i, ""),
-                    src: file.download_url,
-                    watches: 0,
-                    downloads: 0,
-                    likes: 0
-                };
-
-            }
-        );
-
-
-    if (githubVideos.length) {
-        videos = githubVideos;
-    }
-
-}
-
-
-
-/* =========================================
-   HTML ELEMENTS
-========================================= */
-
-const introScreen =
-    document.getElementById(
-        "introScreen"
-    );
-
-
-const loadingScreen =
-    document.getElementById(
-        "loadingScreen"
-    );
-
-
-const mainContent =
-    document.getElementById(
-        "mainContent"
-    );
-
+const intro = document.getElementById("intro");
 
 const watchNowBtn =
-    document.getElementById(
-        "watchNowBtn"
-    );
+    document.getElementById("watchNowBtn");
 
+const loadingScreen =
+    document.getElementById("loadingScreen");
 
-const videoContainer =
-    document.getElementById(
-        "videoContainer"
-    );
+const mainWebsite =
+    document.getElementById("mainWebsite");
 
+const videoGallery =
+    document.getElementById("videoGallery");
 
 const totalWatchesElement =
-    document.getElementById(
-        "totalWatches"
-    );
-
+    document.getElementById("totalWatches");
 
 const totalDownloadsElement =
-    document.getElementById(
-        "totalDownloads"
-    );
-/* =========================================
-   WATCH NOW
-========================================= */
+    document.getElementById("totalDownloads");
 
-watchNowBtn.addEventListener(
-    "click",
-    function () {
+const uploadBtn =
+    document.getElementById("uploadBtn");
 
-        introScreen.classList.add(
-            "hidden"
-        );
+const videoUpload =
+    document.getElementById("videoUpload");
 
+const videoTitle =
+    document.getElementById("videoTitle");
 
-        loadingScreen.classList.remove(
-            "hidden"
-        );
+const uploadMessage =
+    document.getElementById("uploadMessage");
 
 
-        setTimeout(
-            function () {
+/* =================================================
+   WATCH NOW BUTTON
+================================================= */
 
-                loadingScreen.classList.add(
-                    "hidden"
-                );
+watchNowBtn.addEventListener("click", function () {
 
+    intro.style.opacity = "0";
 
-                mainContent.classList.remove(
-                    "hidden"
-                );
+    setTimeout(function () {
 
+        intro.style.display = "none";
 
-                loadVideosFromGitHub()
-                    .catch(
-                        function () {
-                            return undefined;
-                        }
-                    )
-                    .finally(
-                        function () {
-                            displayVideos();
-                        }
-                    );
+        loadingScreen.style.display = "flex";
 
-            },
-            1800
-        );
-
-    }
-);
+    }, 700);
 
 
+    setTimeout(function () {
 
-/* =========================================
+        loadingScreen.style.display = "none";
+
+        mainWebsite.style.display = "block";
+
+        displayVideos();
+
+    }, 3200);
+
+});
+
+
+/* =================================================
    DISPLAY VIDEOS
-========================================= */
+================================================= */
 
 function displayVideos() {
 
-    videoContainer.innerHTML = "";
+    videoGallery.innerHTML = "";
 
 
-    videos.forEach(
-        function (video) {
-
-            const card =
-                document.createElement(
-                    "div"
-                );
+    videos.forEach(function (video) {
 
 
-            card.className =
-                "video-card";
+        const card =
+            document.createElement("div");
+
+        card.className = "video-card";
 
 
-            card.innerHTML = `
+        card.innerHTML = `
 
-                <video
-                    controls
-                    preload="metadata"
+            <video
+                controls
+                preload="metadata"
+                data-id="${video.id}"
+            >
+                <source
+                    src="${video.src}"
+                    type="video/mp4"
                 >
 
-                    <source
-                        src="${video.src}"
-                        type="video/mp4"
-                    >
-
-                    Your browser does not
-                    support video.
-
-                </video>
+                Your browser does not support video playback.
+            </video>
 
 
-                <div class="video-info">
+            <div class="video-info">
 
-                    <h3>
-                        ${video.title}
-                    </h3>
-
-
-                    <div class="video-stats">
-
-                        <span>
-                            👁
-                            ${video.watches}
-                        </span>
-
-                        <span>
-                            ❤️
-                            ${video.likes}
-                        </span>
-
-                        <span>
-                            ⬇
-                            ${video.downloads}
-                        </span>
-
-                    </div>
+                <h3>
+                    ${video.title}
+                </h3>
 
 
-                    <div class="video-actions">
+                <div class="video-stats">
 
-                        <button
-                            onclick="
-                                likeVideo(${video.id})
-                            "
-                        >
-                            ❤️ Like
-                        </button>
+                    👁
+                    <span class="watch-count">
+                        ${video.watches}
+                    </span>
+                    &nbsp;
 
-
-                        <button
-                            onclick="
-                                downloadVideo(${video.id})
-                            "
-                        >
-                            ⬇ Download
-                        </button>
-
-
-                        <button
-                            onclick="
-                                shareVideo(${video.id})
-                            "
-                        >
-                            ↗ Share
-                        </button>
-
-                    </div>
+                    ❤️
+                    <span class="like-count">
+                        ${video.likes}
+                    </span>
 
                 </div>
 
-            `;
+
+                <div class="video-buttons">
+
+                    <button
+                        class="like-btn"
+                        data-id="${video.id}"
+                    >
+                        ❤️ Like
+                    </button>
 
 
-            videoContainer.appendChild(
-                card
-            );
+                    <button
+                        class="share-btn"
+                        data-id="${video.id}"
+                    >
+                        🔗 Share
+                    </button>
 
 
-            const videoElement =
-                card.querySelector(
-                    "video"
-                );
+                    <button
+                        class="download-btn"
+                        data-id="${video.id}"
+                    >
+                        ⬇ Download
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
 
 
-            /* COUNT WATCH */
+        videoGallery.appendChild(card);
 
-            videoElement.addEventListener(
-                "play",
+
+        /* ================= WATCH COUNTER ================= */
+
+        const videoElement =
+            card.querySelector("video");
+
+
+        videoElement.addEventListener(
+            "play",
+            function () {
+
+                const watchedKey =
+                    "watched_" + video.id;
+
+
+                if (!sessionStorage.getItem(watchedKey)) {
+
+                    video.watches++;
+
+                    totalWatches++;
+
+                    sessionStorage.setItem(
+                        watchedKey,
+                        "true"
+                    );
+
+
+                    updateStatistics();
+
+                    displayVideos();
+
+                }
+
+            },
+            {
+                once: true
+            }
+        );
+
+    });
+
+
+    /* ================= LIKE BUTTON ================= */
+
+    document
+        .querySelectorAll(".like-btn")
+        .forEach(function (button) {
+
+            button.addEventListener(
+                "click",
                 function () {
 
-                    if (
-                        !videoElement.dataset.counted
-                    ) {
-
-                        videoElement.dataset.counted =
-                            "true";
+                    const id =
+                        Number(button.dataset.id);
 
 
-                        video.watches++;
-
-                        totalWatches++;
-
-
-                        updateStatistics();
-
-
-                        updateCard(
-                            card,
-                            video
+                    const video =
+                        videos.find(
+                            item => item.id === id
                         );
 
-                    }
+
+                    video.likes++;
+
+
+                    displayVideos();
 
                 }
             );
 
-        }
-    );
+        });
+
+
+    /* ================= SHARE BUTTON ================= */
+
+    document
+        .querySelectorAll(".share-btn")
+        .forEach(function (button) {
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    const id =
+                        Number(button.dataset.id);
+
+
+                    const video =
+                        videos.find(
+                            item => item.id === id
+                        );
+
+
+                    shareVideo(video);
+
+                }
+            );
+
+        });
+
+
+    /* ================= DOWNLOAD BUTTON ================= */
+
+    document
+        .querySelectorAll(".download-btn")
+        .forEach(function (button) {
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    const id =
+                        Number(button.dataset.id);
+
+
+                    const video =
+                        videos.find(
+                            item => item.id === id
+                        );
+
+
+                    downloadVideo(video);
+
+                }
+            );
+
+        });
 
 }
 
 
-
-/* =========================================
+/* =================================================
    UPDATE STATISTICS
-========================================= */
+================================================= */
 
 function updateStatistics() {
 
@@ -359,55 +334,59 @@ function updateStatistics() {
 }
 
 
-
-/* =========================================
+/* =================================================
    LIKE
-========================================= */
+================================================= */
 
-function likeVideo(id) {
 
-    const video =
-        videos.find(
-            function (item) {
+/* Likes are handled inside displayVideos() */
 
-                return item.id === id;
 
-            }
+/* =================================================
+   SHARE VIDEO
+================================================= */
+
+function shareVideo(video) {
+
+    const shareData = {
+
+        title: video.title,
+
+        text:
+            "Watch " +
+            video.title +
+            " by Emma Nar",
+
+        url: window.location.href
+
+    };
+
+
+    if (navigator.share) {
+
+        navigator.share(shareData);
+
+    } else {
+
+        navigator.clipboard.writeText(
+            window.location.href
         );
 
 
-    if (!video) return;
+        alert(
+            "Website link copied!"
+        );
 
-
-    video.likes++;
-
-
-    displayVideos();
+    }
 
 }
 
 
+/* =================================================
+   DOWNLOAD VIDEO
+================================================= */
 
-/* =========================================
-   DOWNLOAD
-========================================= */
-
-function downloadVideo(id) {
-
-    const video =
-        videos.find(
-            function (item) {
-
-                return item.id === id;
-
-            }
-        );
-
-
-    if (!video) return;
-
-
-    video.downloads++;
+function downloadVideo(video) {
 
     totalDownloads++;
 
@@ -416,133 +395,112 @@ function downloadVideo(id) {
 
 
     const link =
-        document.createElement(
-            "a"
-        );
+        document.createElement("a");
 
 
-    link.href =
-        video.src;
-
+    link.href = video.src;
 
     link.download =
         video.title + ".mp4";
 
 
-    document.body.appendChild(
-        link
-    );
+    document.body.appendChild(link);
 
 
     link.click();
 
 
-    document.body.removeChild(
-        link
-    );
-
-
-    displayVideos();
+    document.body.removeChild(link);
 
 }
 
 
+/* =================================================
+   OWNER VIDEO UPLOAD
+================================================= */
 
-/* =========================================
-   SHARE
-========================================= */
-
-function shareVideo(id) {
-
-    const video =
-        videos.find(
-            function (item) {
-
-                return item.id === id;
-
-            }
-        );
+uploadBtn.addEventListener(
+    "click",
+    function () {
 
 
-    if (!video) return;
+        const file =
+            videoUpload.files[0];
 
 
-    const shareData = {
-
-        title:
-            "Emma Nar - " +
-            video.title,
-
-        text:
-            "Watch this Emma Nar video!",
-
-        url:
-            window.location.href
-
-    };
+        const title =
+            videoTitle.value.trim();
 
 
-    if (
-        navigator.share
-    ) {
+        if (!file) {
 
-        navigator.share(
-            shareData
-        );
+            uploadMessage.textContent =
+                "Please choose a video.";
+
+            return;
+
+        }
+
+
+        if (!title) {
+
+            uploadMessage.textContent =
+                "Please enter a video title.";
+
+            return;
+
+        }
+
+
+        if (!file.type.startsWith("video/")) {
+
+            uploadMessage.textContent =
+                "Please select a video file.";
+
+            return;
+
+        }
+
+
+        /* TEMPORARY LOCAL VIDEO */
+
+        const videoURL =
+            URL.createObjectURL(file);
+
+
+        videos.push({
+
+            id:
+                Date.now(),
+
+            title:
+                title,
+
+            src:
+                videoURL,
+
+            watches:
+                0,
+
+            downloads:
+                0,
+
+            likes:
+                0
+
+        });
+
+
+        displayVideos();
+
+
+        uploadMessage.textContent =
+            "Video added successfully on this browser.";
+
+
+        videoUpload.value = "";
+
+        videoTitle.value = "";
 
     }
-
-    else {
-
-        navigator.clipboard.writeText(
-            window.location.href
-        );
-
-
-        alert(
-            "Video website link copied!"
-        );
-
-    }
-
-}
-
-/* =========================================
-   UPDATE SINGLE CARD
-========================================= */
-
-function updateCard(
-    card,
-    video
-) {
-
-    const stats =
-        card.querySelector(
-            ".video-stats"
-        );
-
-
-    stats.innerHTML = `
-
-        <span>
-            👁 ${video.watches}
-        </span>
-
-        <span>
-            ❤️ ${video.likes}
-        </span>
-
-        <span>
-            ⬇ ${video.downloads}
-        </span>
-
-    `;
-
-}
-
-
-/* =========================================
-   START
-========================================= */
-
-updateStatistics();
+);
