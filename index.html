@@ -1,190 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- SEO -->
     <title>Emma Nar - Official Videos</title>
 
-    <meta name="description" content="Official Emma Nar website. Watch, like, share and download videos from Emma Nar.">
+    <meta
+        name="description"
+        content="Official Emma Nar website. Watch, like, share and download videos from Emma Nar."
+    >
 
-    <meta name="keywords" content="Emma Nar, Emma Nar videos, Emma Nar music, Emma Nar official">
+    <meta
+        name="keywords"
+        content="Emma Nar, Emma Nar videos, Emma Nar music, Emma Nar official"
+    >
 
     <meta name="author" content="Emma Nar">
-
     <meta name="robots" content="index, follow">
 
-    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
-
 </head>
-
 
 <body>
 
+    <!-- ================= INTRO ================= -->
 
-    <!-- =========================
-         INTRO SCREEN
-    ========================== -->
+    <section id="intro" class="intro">
 
-    <section id="introScreen" class="intro-screen">
+        <div class="intro-content">
 
-        <img src="Pic1.png" alt="Emma Nar" class="intro-logo">
+            <img src="Pic1.png" alt="Emma Nar" class="intro-image">
 
-        <h1>Emma Nar</h1>
+            <h1>Emma Nar</h1>
 
-        <p>
-            Official Video Website
-        </p>
+            <p>Official Video Website</p>
 
-        <button id="watchNowBtn">
-            ▶ Watch Now
-        </button>
+            <button id="watchNowBtn">
+                ▶ Watch Now
+            </button>
 
-    </section>
-
-
-
-    <!-- =========================
-         LOADING SCREEN
-    ========================== -->
-
-    <section id="loadingScreen" class="loading-screen hidden">
-
-        <div class="video-icon">
-            ▶
         </div>
 
-        <h2>
-            Preparing Videos...
-        </h2>
+    </section>
 
-        <div class="loader"></div>
+
+    <!-- ================= LOADING SCREEN ================= -->
+
+    <section id="loadingScreen" class="loading-screen">
+
+        <div class="loading-content">
+
+            <div class="video-loader">
+                ▶
+            </div>
+
+            <h2>Preparing Videos...</h2>
+
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+
+        </div>
 
     </section>
 
 
+    <!-- ================= MAIN WEBSITE ================= -->
 
-    <!-- =========================
-         MAIN WEBSITE
-    ========================== -->
-
-    <main id="mainContent" class="hidden">
-
+    <main id="mainWebsite" class="main-website">
 
         <!-- NAVIGATION -->
 
-        <header class="navbar">
+        <nav class="navbar">
 
-            <div class="brand">
-
-                <img src="Pic1.png" alt="Emma Nar">
-
-                <span>
-                    Emma Nar
-                </span>
-
+            <div class="logo">
+                Emma <span>Nar</span>
             </div>
 
-
-            <div class="owner-statistics">
+            <div class="nav-stats">
 
                 <div>
-
-                    <strong id="totalWatches">
-                        0
-                    </strong>
-
-                    <small>
-                        Watches
-                    </small>
-
+                    👁
+                    <span id="totalWatches">0</span>
+                    Watches
                 </div>
 
-
                 <div>
-
-                    <strong id="totalDownloads">
-                        0
-                    </strong>
-
-                    <small>
-                        Downloads
-                    </small>
-
+                    ⬇
+                    <span id="totalDownloads">0</span>
+                    Downloads
                 </div>
 
             </div>
 
-        </header>
+        </nav>
 
 
-
-        <!-- =========================
-             WELCOME
-        ========================== -->
+        <!-- ================= WELCOME ================= -->
 
         <section class="welcome">
 
-            <h1>
-                Emma Nar
-            </h1>
+            <h1>Welcome to Emma Nar</h1>
 
             <p>
-                Welcome to the official Emma Nar
-                video website.
+                Watch the latest official videos from Emma Nar.
             </p>
 
         </section>
 
-        <!-- =========================
-             VIDEO GALLERY
-        ========================== -->
 
-        <section class="videos-section">
+        <!-- ================= OWNER UPLOAD ================= -->
 
-            <h2>
-                Latest Videos
-            </h2>
+        <section class="owner-section">
 
+            <h2>Owner Upload</h2>
 
-            <div id="videoContainer" class="video-grid">
+            <p>
+                Upload a video from your computer.
+            </p>
 
-                <div class="video-card">
+            <div class="upload-box">
 
-                    <video controls preload="metadata">
+                <input
+                    type="file"
+                    id="videoUpload"
+                    accept="video/*"
+                >
 
-                        <source src="videos/video.mp4" type="video/mp4">
+                <input
+                    type="text"
+                    id="videoTitle"
+                    placeholder="Enter video title"
+                >
 
-                        Your browser does not support video.
-
-                    </video>
-
-                    <div class="video-info">
-
-                        <h3>Video</h3>
-
-                    </div>
-
-                </div>
+                <button id="uploadBtn">
+                    Upload Video
+                </button>
 
             </div>
+
+            <p id="uploadMessage"></p>
 
         </section>
 
 
+        <!-- ================= VIDEOS ================= -->
+
+        <section class="videos-section">
+
+            <h2>Latest Videos</h2>
+
+            <div id="videoGallery" class="video-gallery"></div>
+
+        </section>
+
+
+        <!-- ================= FOOTER ================= -->
+
+        <footer>
+
+            <h2>Emma Nar</h2>
+
+            <p>
+                Official Video Website
+            </p>
+
+            <p>
+                © 2026 Emma Nar. All Rights Reserved.
+            </p>
+
+        </footer>
+
     </main>
 
 
-    <!-- JAVASCRIPT -->
-
     <script src="script.js"></script>
 
-
 </body>
-
 </html>
