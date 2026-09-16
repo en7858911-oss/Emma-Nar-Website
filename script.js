@@ -76,27 +76,6 @@ const totalDownloadsElement =
     document.getElementById(
         "totalDownloads"
     );
-
-
-const videoUpload =
-    document.getElementById(
-        "videoUpload"
-    );
-
-
-const uploadBtn =
-    document.getElementById(
-        "uploadBtn"
-    );
-
-
-const uploadMessage =
-    document.getElementById(
-        "uploadMessage"
-    );
-
-
-
 /* =========================================
    WATCH NOW
 ========================================= */
@@ -454,94 +433,6 @@ function shareVideo(id) {
     }
 
 }
-
-
-
-/* =========================================
-   OWNER VIDEO UPLOAD
-========================================= */
-
-uploadBtn.addEventListener(
-    "click",
-    function () {
-
-        const file =
-            videoUpload.files[0];
-
-
-        if (!file) {
-
-            uploadMessage.textContent =
-                "Please select a video.";
-
-            return;
-
-        }
-
-
-        if (
-            file.type !== "video/mp4" &&
-            !file.name.toLowerCase().endsWith(".mp4")
-        ) {
-
-            uploadMessage.textContent =
-                "Only MP4 video files are allowed.";
-
-            return;
-
-        }
-
-
-        /* Temporary browser video URL */
-
-        const videoURL =
-            URL.createObjectURL(
-                file
-            );
-
-
-        const newVideo = {
-
-            id:
-                Date.now(),
-
-            title:
-                file.name,
-
-            src:
-                videoURL,
-
-            watches:
-                0,
-
-            downloads:
-                0,
-
-            likes:
-                0
-
-        };
-
-
-        videos.unshift(
-            newVideo
-        );
-
-
-        uploadMessage.textContent =
-            "Video preview added. To publish it online, add the MP4 to the videos folder in GitHub and add its path to the videos list.";
-
-
-        videoUpload.value =
-            "";
-
-
-        displayVideos();
-
-    }
-);
-
-
 
 /* =========================================
    UPDATE SINGLE CARD
